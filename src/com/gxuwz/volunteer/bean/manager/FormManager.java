@@ -1,6 +1,12 @@
 package com.gxuwz.volunteer.bean.manager;
 
-import com.gxuwz.volunteer.bean.entity.Activity;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.gxuwz.volunteer.bean.entity.*;
+import com.gxuwz.volunteer.bean.entity.*;
 import com.gxuwz.volunteer.database.DbUtil;
 
 public class FormManager {
@@ -22,4 +28,64 @@ public class FormManager {
 		   }
 			
 		}
+	
+	public int qiandao(String actID ,String voID)throws Exception{
+		   try{
+			    String sql="update form set status=1 WHERE actID='"+actID+"' and voID = '"+voID+"'";
+			    int count = dbUtil.executeUpate(sql, null);
+			    return count;
+		   }catch(Exception e){
+			   e.printStackTrace();
+			   throw new Exception("add activity failed!"+e.getMessage(),e);
+		   }
+			
+		}
+	
+	public List<Form> findAll() throws Exception{
+		List<Form> formList = new ArrayList<Form>();
+		String sql = "select * from form where 1=1";
+		ResultSet rs = dbUtil.executeQuery(sql, null);
+		while(rs.next()){
+			Form form = new Form();
+			form.setActID(rs.getString("actID"));
+			form.setScore(rs.getInt("score"));
+			form.setStatus(rs.getString("status"));
+			form.setVoID(rs.getString("voID"));
+			formList.add(form);
+		}
+		return formList;
+	}
+	
+	public int pingfen(Form form)throws Exception{
+		   try{
+			    String sql="update form set status=? WHERE actID='"+form.getActID()+"' and voID = '"+form.getVoID()+"'";		   	    
+			    Object params[] = new Object [1];
+				params[0] = form.getScore();
+			    int count = dbUtil.executeUpate(sql, params);
+			    return count;
+		   }catch(Exception e){
+			   e.printStackTrace();
+			   throw new Exception("add activity failed!"+e.getMessage(),e);
+		   }
+			
+		}
+	
+	public Form findAllbyID(String actID,String voID)throws Exception{
+		try {
+			String sql = "select *  from form WHERE actID='"+actID+"' and voID='"+voID+"'";
+			
+		    ResultSet rs = dbUtil.executeQuery(sql, null);
+		    Form form = new Form();
+		    while(rs.next()){
+		    	form.setActID(rs.getString("actID"));
+		    	form.setStatus(rs.getString("status"));
+		    	form.setVoID(rs.getString("voID"));
+		    	form.setScore(rs.getInt("score"));
+		    }
+		    return form;
+		       }catch(SQLException e){
+		       e.printStackTrace();
+		       throw e;
+		       }
+	}
 }

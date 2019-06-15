@@ -3,7 +3,7 @@ package com.gxuwz.volunteer.bean.entity;
 public class Form {
 	private String actID;
 	private String voID;
-	private int status;
+	private String status;
 	private int score;
 public Form(){
 	
@@ -20,10 +20,11 @@ public String getVoID() {
 public void setVoID(String voID) {
 	this.voID = voID;
 }
-public int getStatus() {
+
+public String getStatus() {
 	return status;
 }
-public void setStatus(int status) {
+public void setStatus(String status) {
 	this.status = status;
 }
 public int getScore() {

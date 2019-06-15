@@ -11,9 +11,18 @@
     <servlet-name>ArtServlet</servlet-name>
     <servlet-class>com.gxuwz.volunteer.web.servlet.ArtServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>FormServlet</servlet-name>
+    <servlet-class>com.gxuwz.volunteer.web.servlet.FormServlet</servlet-class>
+  </servlet>
+
 
   <servlet-mapping>
     <servlet-name>ArtServlet</servlet-name>
     <url-pattern>/ArtServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FormServlet</servlet-name>
+    <url-pattern>/FormServlet</url-pattern>
   </servlet-mapping>
 </web-app>

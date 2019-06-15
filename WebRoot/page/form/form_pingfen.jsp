@@ -23,19 +23,19 @@
 
 <body>
 <%
-Activity act = (Activity)request.getAttribute("act");
+Department dep = (Department)request.getAttribute("dep");
 
  %>
 <div class="panel admin-panel">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加用户</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="<%=path%>/BuildServlet?action=edit">  
+    <form method="post" class="form-x" action="<%=path%>/DepServlet?action=edit">  
       <div class="form-group">
         <div class="label">
           <label>课程编号：</label>
         </div>
         <div class="field" align="center">
-          <input  type="text" class="input w50" value="<%=%>" name="buildID" readonly="ture" />
+          <input  type="text" class="input w50" value="<%=dep.getDepID()%>" name="depID" readonly="ture" />
           <div class="tips"></div>
         </div>
       </div>
@@ -45,7 +45,7 @@ Activity act = (Activity)request.getAttribute("act");
           <label>班号：</label>
         </div>
         <div class="field" align="center">
-          <input type="text" class="input w50" value="<%=%>" name="buildName" data-validate="required:请输入班号" />
+          <input type="text" class="input w50" value="<%=dep.getDepName()%>" name="depName" data-validate="required:请输入班号" />
           <div class="tips"></div>
         </div>
       </div>
