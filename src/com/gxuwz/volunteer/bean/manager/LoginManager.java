@@ -7,9 +7,9 @@ import com.gxuwz.volunteer.database.DbUtil;
 public class LoginManager {
 	private DbUtil dbUtil =new DbUtil();
 
-	public boolean ruserlogin(String name, String password) throws Exception {
+	public boolean userlogin(String name, String password) throws Exception {
 			boolean a = false;
-			String sql = "select * from sys_ruser where ruserID = '"+name+"'and password = '"+password+"'";
+			String sql = "select * from user where userID = '"+name+"'and password = '"+password+"'";
 			ResultSet rs = dbUtil.executeQuery(sql, null);
 			if(rs.next()){
 				a = true;
@@ -19,7 +19,7 @@ public class LoginManager {
 
 	public boolean stulogin(String name, String password) throws Exception {
 		boolean a = false;
-		String sql = "select * from sys_student where stuID = '"+name+"'and password = '"+password+"'";
+		String sql = "select * from student where stuID = '"+name+"'and password = '"+password+"'";
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		if(rs.next()){
 			a = true;
@@ -29,9 +29,9 @@ public class LoginManager {
 		return a;
 	}
 
-	public boolean instlogin(String name, String password) throws Exception {
+	public boolean vouserlogin(String name, String password) throws Exception {
 		boolean a = false;
-		String sql = "select * from sys_instructor where instID = '"+name+"'and password = '"+password+"'";
+		String sql = "select * from vouser where vouserID = '"+name+"'and password = '"+password+"'";
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		if(rs.next()){
 			a = true;

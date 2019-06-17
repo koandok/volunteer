@@ -19,14 +19,14 @@
   <div class="logo margin-big-left fadein-top">
     <h1><img src="images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />请假管理系统</h1>
   </div>
-  <%String admin = (String)session.getAttribute("name"); 
+  <%String admin = (String)session.getAttribute("userid"); 
  %>
   <div class="head-l" ><a href="" target="_blank" style="color:#FFF" ><span class="icon-user"></span> 欢迎 <%=admin%></a>&nbsp;&nbsp;<a class="button button-little bg-green" href="index_user.jsp" target="_blank" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="augh\action_loginout.jsp"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   
-  <li><h2><a href="page/user/user_updata.jsp" target="right"><span class="icon-user"></span>个人设置</a></h2></li>
+  <li><h2><a href="<%=path %>/ArtServlet?action=list_user" target="right"><span class="icon-user"></span>个人设置</a></h2></li>
   
   <li><h2><a href="page/department/dep_list.jsp" target="right"><span class="icon-user"></span>二级学院管理</a></h2></li>
  

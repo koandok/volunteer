@@ -26,7 +26,7 @@
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   
   
-  <li><h2><a href="<%=path %>/DormServlet?action=list" target="right"><span class="icon-user"></span>填写请假申请</a></h2></li>
+  <li><h2><a href="<%=path %>/ArtServlet?action=list_vo" target="right"><span class="icon-user"></span>填写请假申请</a></h2></li>
   
 </div>
 <script type="text/javascript">

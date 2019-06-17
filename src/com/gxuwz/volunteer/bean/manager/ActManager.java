@@ -62,6 +62,17 @@ public class ActManager {
 			
 		}
 		
+		public int del(Activity act)throws Exception{
+			   try{
+				    String sql="delect * from activity where actID = '"+act.getActID()+"'";	   
+				    int count = dbUtil.executeUpate(sql, null);
+				    return count;
+			   }catch(Exception e){
+				   e.printStackTrace();
+				   throw new Exception("add activity failed!"+e.getMessage(),e);
+			   }
+				
+			}
 		
 	public Activity findbyID(String ID) throws Exception {
 

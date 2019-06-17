@@ -72,14 +72,15 @@
 				<td><%=actName%></td>								
 				<td><%=content%></td>
 				<td><%=peopleNum%></td>
-				<td><%=vouserID%></td>							
+				<td><%=vouserID%></td>
 				<td><%=actBegin%></td>
 				<td><%=actEnd%></td>
 				<td><%=joinBegin%></td>
 				<td><%=joinEnd%></td>
 				
 				<td>	
-				<div class="button-group"> <a class="button border-main" href="<%=path%>/BuildServlet?buildID=<%=actID%>&action=get"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="<%=actID%>/BuildServlet?action=del" ><span class="icon-trash-o"></span> 删除</a> </div>
+				<div class="button-group"> <a class="button border-main" href="<%=path%>/ArtServlet?actID=<%=actID%>&action=get"><span class="icon-edit"></span> 修改</a> 
+				<a class="button border-red" href="<%=path%>/ArtServlet?action=del&actID=<%=actID%>" ><span class="icon-trash-o"></span> 删除</a> </div>
 				</td>
 			</tr>
 			<%

@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/base/base.jsp"%>
+<%@ page import = "com.gxuwz.volunteer.bean.manager.*" %>
+<%@ page import = "com.gxuwz.volunteer.bean.entity.*" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -20,26 +22,30 @@
 </head>
 
 <body>
+<%
+Activity act = (Activity)request.getAttribute("act");
+
+ %>
 <div class="panel admin-panel">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加用户</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="<%=path%>/DepServlet?action=add">  
+    <form method="post" class="form-x" action="<%=path%>/BuildServlet?action=edit">  
       <div class="form-group">
         <div class="label">
-          <label>楼号：</label>
+          <label>课程编号：</label>
         </div>
         <div class="field" align="center">
-          <input  type="text" class="input w50" value="" name="depID"  />
+          <input  type="text" class="input w50" value="<%=%>" name="buildID" readonly="ture" />
           <div class="tips"></div>
         </div>
       </div>
 
       <div class="form-group">
         <div class="label">
-          <label>楼名：</label>
+          <label>班号：</label>
         </div>
         <div class="field" align="center">
-          <input type="text" class="input w50" value="" name="depName" data-validate="required:请输入班号" />
+          <input type="text" class="input w50" value="<%=%>" name="buildName" data-validate="required:请输入班号" />
           <div class="tips"></div>
         </div>
       </div>

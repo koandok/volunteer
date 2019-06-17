@@ -124,18 +124,18 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try{
 
-			String depID = request.getParameter("depID");
+			String actID = request.getParameter("actID");
 			
-			Department dep = new Department();
+			Activity act = new Activity();
 			//把参数对应放入实体类user属性中
-			dep.setDepID(depID);
+			act.setActID(actID);
 			
 
-			DepManager depmanager = new DepManager();
+			ActManager actmanager = new ActManager();
 
-		if(depmanager.del(dep)>0){
+		if(actmanager.del(act)>0){
 		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
-		list(request, response);
+		list_user(request, response);
 		}else{
 		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
 			proccess(request, response, "/page/user/user_updata.jsp");
@@ -154,16 +154,16 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			act = actmanager.findbyID(actID);
 			request.setAttribute("act", act);
 			
-			proccess(request, response, "/page/department/dep_update.jsp");
+			proccess(request, response, "/page/activity/act_update.jsp");
 			
 		}
 		public void bao(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String actID = request.getParameter("actID");
 			
 			Date date = new Date();
-			/*HttpSession session = request.getSession();
-			String voID = (String)session.getAttribute("adminID");*/
-			String voID = "1";
+			HttpSession session = request.getSession();
+			String voID = (String)session.getAttribute("userid");
+
 			Activity act = new Activity();
 			//把参数对应放入实体类user属性中
 			ActManager actmanager = new ActManager();

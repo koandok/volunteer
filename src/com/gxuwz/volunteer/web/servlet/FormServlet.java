@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gxuwz.volunteer.bean.entity.*;
 
@@ -35,7 +36,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		//选择结构
 		if("list_vouser".equals(action)){
 			try {
-				list_vouser(request, response);
+				list_vouser(request, response);//青协端活动表列表
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -43,14 +44,14 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			
 		}else if("qiandao".equals(action)){
 			try {
-				qiandao(request, response);
+				qiandao(request, response);//签到
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if("pingfen".equals(action)){
 			try {
-				pingfen(request, response);
+				pingfen(request, response);//评分
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -58,6 +59,13 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		}else if("get".equals(action)){
 			try {
 				get(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if("".equals(action)){
+			try {
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -93,7 +101,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			form.setScore(Integer.parseInt(request.getParameter("score")));
 			
 			
-		FormManager formmanager = new FormManager();
+		FormManager formmanager = new FormManager(); 
 
 		if(formmanager.pingfen(form)>0){
 		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
@@ -101,7 +109,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		}else{
 		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
 			proccess(request, response, "/page/department/dep_update.jsp");
-		}
+		} 
 		}catch(Exception e){
 			e.printStackTrace();
 			}
@@ -111,22 +119,22 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			Form form = new Form();
 			String actID = request.getParameter("actID");
 			String voID = request.getParameter("voID");
-				
 			FormManager formmanager = new FormManager();
 	
 			form = formmanager.findAllbyID(actID, voID);
 			request.setAttribute("form", form);
-			proccess(request, response, "/page/department/dep_update.jsp");
+			proccess(request, response, "/page/form/form_pingfen.jsp");
 		
 		}catch(Exception e){
 			e.printStackTrace();
 			}
 		}
 	public void list_vouser(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		HttpSession session = request.getSession();
+		String vouserID = (String)session.getAttribute("userid");
 		List<Form> formList = new ArrayList<Form>();			
 		FormManager formmanager = new FormManager();
-		formList = formmanager.findAll();
+		formList = formmanager.findAll(vouserID);
 		request.setAttribute("formList", formList);
 		proccess(request, response, "/page/form/form_list_vouser.jsp");
 		

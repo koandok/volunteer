@@ -17,8 +17,8 @@
 <body style="background-color:#f2f9fd;">
 <div class="header bg-main">
   <div class="logo margin-big-left fadein-top">
-    <h1><img src="images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />请假管理系统</h1>
-  </div><%String admin = (String)session.getAttribute("name"); 
+    <h1><img src="images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />志愿者管理系统-青协</h1>
+  </div><%String admin = (String)session.getAttribute("userid"); 
  %>
   <div class="head-l" ><a href="" target="_blank" style="color:#FFF" ><span class="icon-user"></span>  欢迎 <%=admin%></a>&nbsp;&nbsp;<a class="button button-little bg-green" href="index_inst.jsp" target="_blank" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="augh\action_loginout.jsp"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
@@ -34,7 +34,7 @@
     
   <h2><span class="icon-user"></span>请假信息管理</h2>
   <ul>
-    <li><a href="page\leave\leave_instcheck_list.jsp" target="right"><span class="icon-caret-right"></span>审核请假申请</a></li>
+    <li><a href="<%=path %>/FormServlet?action=list_vouser" target="right"><span class="icon-caret-right"></span>报名表管理</a></li>
     <li><a href="page\leave\leave_instout_list.jsp" target="right"><span class="icon-caret-right"></span>导出请假名单</a></li>      
   </ul>
   

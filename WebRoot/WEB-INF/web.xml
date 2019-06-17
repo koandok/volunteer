@@ -15,11 +15,18 @@
     <servlet-name>FormServlet</servlet-name>
     <servlet-class>com.gxuwz.volunteer.web.servlet.FormServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.gxuwz.volunteer.web.servlet.LoginServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>ArtServlet</servlet-name>
     <url-pattern>/ArtServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>FormServlet</servlet-name>

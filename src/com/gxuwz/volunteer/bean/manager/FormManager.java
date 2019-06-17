@@ -41,9 +41,12 @@ public class FormManager {
 			
 		}
 	
-	public List<Form> findAll() throws Exception{
+	public List<Form> findAll(String id) throws Exception{
 		List<Form> formList = new ArrayList<Form>();
 		String sql = "select * from form where 1=1";
+		if(id != null){
+			sql = "select * from form where vouserID = '"+id+"'";
+		}
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
 			Form form = new Form();
@@ -51,6 +54,7 @@ public class FormManager {
 			form.setScore(rs.getInt("score"));
 			form.setStatus(rs.getString("status"));
 			form.setVoID(rs.getString("voID"));
+			form.setVouserID(rs.getString("vouserID"));
 			formList.add(form);
 		}
 		return formList;
@@ -58,7 +62,7 @@ public class FormManager {
 	
 	public int pingfen(Form form)throws Exception{
 		   try{
-			    String sql="update form set status=? WHERE actID='"+form.getActID()+"' and voID = '"+form.getVoID()+"'";		   	    
+			    String sql="update form set score=? WHERE actID='"+form.getActID()+"' and voID = '"+form.getVoID()+"'";		   	    
 			    Object params[] = new Object [1];
 				params[0] = form.getScore();
 			    int count = dbUtil.executeUpate(sql, params);
@@ -72,7 +76,7 @@ public class FormManager {
 	
 	public Form findAllbyID(String actID,String voID)throws Exception{
 		try {
-			String sql = "select *  from form WHERE actID='"+actID+"' and voID='"+voID+"'";
+			String sql = "select *  from form WHERE actID='"+actID+"' and voID='"+voID+"' ";
 			
 		    ResultSet rs = dbUtil.executeQuery(sql, null);
 		    Form form = new Form();
@@ -81,6 +85,7 @@ public class FormManager {
 		    	form.setStatus(rs.getString("status"));
 		    	form.setVoID(rs.getString("voID"));
 		    	form.setScore(rs.getInt("score"));
+		    	form.setVouserID(rs.getString("vouserID"));
 		    }
 		    return form;
 		       }catch(SQLException e){

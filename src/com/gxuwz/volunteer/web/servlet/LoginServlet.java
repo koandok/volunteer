@@ -53,9 +53,6 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String user = request.getParameter("user");
-		System.out.println(name);
-		System.out.println(password);
-		System.out.println(password);
 		HttpSession session=request.getSession();
 		session.setAttribute("userid", name);
 		LoginManager loginmanager = new  LoginManager();
@@ -67,13 +64,13 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 				proccess(request, response, "/login.jsp");
 			}
 			}else if(user.equals("B")){
-			if(loginmanager.instlogin(name, password)){
-				proccess(request, response, "/index_inst.jsp");
+			if(loginmanager.vouserlogin(name, password)){
+				proccess(request, response, "/index_vouser.jsp");
 			}else{
 				proccess(request, response, "/login.jsp");
 			}
 			}else if(user.equals("C")){
-				if(loginmanager.ruserlogin(name, password)){
+				if(loginmanager.userlogin(name, password)){
 					proccess(request, response, "/index_user.jsp");
 				}else{
 					proccess(request, response, "/login.jsp");

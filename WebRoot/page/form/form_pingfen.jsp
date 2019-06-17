@@ -23,29 +23,60 @@
 
 <body>
 <%
-Department dep = (Department)request.getAttribute("dep");
+Form form = (Form)request.getAttribute("form");
 
  %>
 <div class="panel admin-panel">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加用户</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="<%=path%>/DepServlet?action=edit">  
+    <form method="post" class="form-x" action="<%=path%>/FormServlet?action=pingfen">
+      
       <div class="form-group">
         <div class="label">
-          <label>课程编号：</label>
+          <label>活动号：</label>
         </div>
         <div class="field" align="center">
-          <input  type="text" class="input w50" value="<%=dep.getDepID()%>" name="depID" readonly="ture" />
+          <input  type="text" class="input w50" value="<%=form.getActID()%>" name="actID" readonly="ture" />
           <div class="tips"></div>
         </div>
       </div>
 
       <div class="form-group">
         <div class="label">
-          <label>班号：</label>
+          <label>志愿者ID：</label>
         </div>
         <div class="field" align="center">
-          <input type="text" class="input w50" value="<%=dep.getDepName()%>" name="depName" data-validate="required:请输入班号" />
+          <input type="text" class="input w50" value="<%=form.getVoID()%>" name="voID" data-validate="required:请输入班号" readonly="ture"/>
+          <div class="tips"></div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="label">
+          <label>签到状态：</label>
+        </div>
+        <div class="field" align="center">
+          <input type="text" class="input w50" value="<%=form.getStatus()%>" name="status" data-validate="required:请输入班号" readonly="ture"/>
+          <div class="tips"></div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="label">
+          <label>分数：</label>
+        </div>
+        <div class="field" align="center">
+          <input type="text" class="input w50" value="<%=form.getScore()%>" name="score" data-validate="required:请输入班号" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      
+	<div class="form-group">
+        <div class="label">
+          <label>负责人ID：</label>
+        </div>
+        <div class="field" align="center">
+          <input type="text" class="input w50" value="<%=form.getVouserID()%>" name="vouserID" data-validate="required:请输入班号"readonly="ture" />
           <div class="tips"></div>
         </div>
       </div>

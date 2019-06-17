@@ -28,7 +28,7 @@
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
 
-        <li> <a class="button border-main icon-plus-square-o" href="page/building/building_add.jsp"> 添加用户</a> </li>
+        <li> <a class="button border-main icon-plus-square-o" href="page/activity/act_add.jsp"> 添加用户</a> </li>
             
         <li>搜索：</li>
           
@@ -41,33 +41,45 @@
     </div>
     <!-- </form>  -->
     <table class="table table-hover text-center">
-      <tr>
-       <th>序号</th>
-				<th>楼号</th>
-				<th>楼名</th>
-				<th>操作</th>
-      </tr>
-    
-				
-				
-			<%--读取所有用户信息记录 --%>
-			<%  //设置编码方式
-		       List<Building> buildList = new ArrayList<Building>();
-			   buildList = (List)request.getAttribute("buildList");
-			   int index = 1;
-			   for(Building build : buildList){
-			   	  String buildID = build.getBuildID();
-			   	  String buildName = build.getBuildName();
-			   
-			%>
+      <tr>  				
+			<th>活动编号</th>
+			<th>活动名称</th>
+			<th>内容</th>
+			<th>人数</th>
+			<th>负责人ID</th>
+			<th>活动开始时间</th>
+			<th>活动截止时间</th>
+			<th>报名时间</th>
+			<th>报名截止时间</th>
+			<th>操作</th>
+       </tr>
 
+			<%   
+			List<Activity> actList = (List)request.getAttribute("actList");
+			for(Activity act : actList){
+			String actID = act.getActID();
+			String actName = act.getActName();
+			String content = act.getContent();
+			int peopleNum = act.getPeopleNum();
+			String vouserID = act.getVouserID();
+			Date actBegin = act.getActBegin();
+			Date actEnd = act.getActEnd();
+			Date joinBegin = act.getJoinBegin();
+			Date joinEnd = act.getJoinEnd();		    
+				%>
 			<tr>
-				<td><%=index++%></td>
-				<td><%=buildID%></td>
-				<td><%=buildName%></td>
-
-				<td>
-				<div class="button-group"> <a class="button border-main" href="<%=path%>/BuildServlet?buildID=<%=buildID%>&action=get"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="<%=path%>/BuildServlet?buildID=<%=buildID%>&action=del" ><span class="icon-trash-o"></span> 删除</a> </div>
+				<td><%=actID%></td>				
+				<td><%=actName%></td>								
+				<td><%=content%></td>
+				<td><%=peopleNum%></td>
+				<td><%=vouserID%></td>							
+				<td><%=actBegin%></td>
+				<td><%=actEnd%></td>
+				<td><%=joinBegin%></td>
+				<td><%=joinEnd%></td>
+				
+				<td>	
+				<div class="button-group"> <a class="button border-main" href="<%=path%>/BuildServlet?buildID=<%=actID%>&action=get"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="<%=actID%>/BuildServlet?action=del" ><span class="icon-trash-o"></span> 删除</a> </div>
 				</td>
 			</tr>
 			<%

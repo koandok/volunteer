@@ -4,9 +4,16 @@ public class Form {
 	private String actID;
 	private String voID;
 	private String status;
+	private String vouserID;
 	private int score;
 public Form(){
 	
+}
+public String getVouserID() {
+	return vouserID;
+}
+public void setVouserID(String vouserID) {
+	this.vouserID = vouserID;
 }
 public String getActID() {
 	return actID;

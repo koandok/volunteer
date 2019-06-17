@@ -46,6 +46,7 @@
 			<th>志愿者ID</th>
 			<th>签到状态</th>
 			<th>分数</th>
+			<th>负责人ID</th>
 			<th>操作</th>
        </tr>
 
@@ -55,6 +56,7 @@
 			String actID = form.getActID();
 			String voID = form.getVoID();
 			String status = form.getStatus();
+			String vouserID = form.getVouserID();
 			int score = form.getScore();
 		    if(status.equals("0")){
 		    status = "未签到";
@@ -67,9 +69,11 @@
 				<td><%=actID%></td>				
 				<td><%=voID%></td>								
 				<td><%=status%></td>
-				<td><%=score%></td>		
+				<td><%=score%></td>	
+				<td><%=vouserID%></td>		
 				<td>	
-				<div class="button-group"> <a class="button border-main" href="<%=path%>/FormServlet?actID=<%=actID%>&action=qiandao&voID=<%=voID%>"><span class="icon-edit"></span>签到</a> <a class="button border-red" href="<%=path%>/FormServlet?actID=<%=actID%>&action=score&voID=<%=voID%>" ><span class="icon-trash-o"></span> 打分</a> </div>
+				<div class="button-group"> <a class="button border-main" href="<%=path%>/FormServlet?actID=<%=actID%>&action=qiandao&voID=<%=voID%>"><span class="icon-edit"></span>签到</a> 
+				<a class="button border-red" href="<%=path%>/FormServlet?actID=<%=actID%>&action=get&voID=<%=voID%>" ><span class="icon-trash-o"></span> 打分</a> </div>
 				</td>
 			</tr>
 			<%
