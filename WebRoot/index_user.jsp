@@ -26,9 +26,9 @@
 <div class="leftnav">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   
-  <li><h2><a href="<%=path %>/ArtServlet?action=list_user" target="right"><span class="icon-user"></span>个人设置</a></h2></li>
+  <li><h2><a href="<%=path %>/ArtServlet?action=list_user" target="right"><span class="icon-user"></span>活动管理</a></h2></li>
   
-  <li><h2><a href="page/department/dep_list.jsp" target="right"><span class="icon-user"></span>二级学院管理</a></h2></li>
+  <li><h2><a href="<%=path %>/VoServlet?action=list" target="right"><span class="icon-user"></span>志愿者管理</a></h2></li>
  
   <li><h2><a href="page/instructor/inst_list.jsp" target="right"><span class="icon-user"></span>辅导员管理</a></h2></li>
  

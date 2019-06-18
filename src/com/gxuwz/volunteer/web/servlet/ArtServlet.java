@@ -98,23 +98,33 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 	}
 	public void edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try{
-
-			String depID = request.getParameter("depID");
-			String depName = request.getParameter("depName");
+			String actID = request.getParameter("actID");
+			String actName = request.getParameter("actName");
+			String content = request.getParameter("content");
+			String peopleNum = request.getParameter("peopleNum");
+			String vouserID = request.getParameter("vouserID");
+			String actBegin = request.getParameter("actBegin");
+			String actEnd = request.getParameter("actEnd");
+			String joinBegin = request.getParameter("joinBegin");
+			String joinEnd = request.getParameter("joinEnd");
+			Activity activity = new Activity();
+			activity.setActID(actID);
+			activity.setActName(actName);
+			System.out.println("111111111"+actName);
+			System.out.println("333333333"+activity.getActName());
+			activity.setContent(content);
+			activity.setPeopleNum(Integer.parseInt(peopleNum));
+			activity.setVouserID(vouserID);
+			activity.setActBegin(dateutil.StringtoD(actBegin));
+			activity.setActEnd(dateutil.StringtoD(actEnd));
+			activity.setJoinBegin(dateutil.StringtoD(joinBegin));
+			activity.setJoinEnd(dateutil.StringtoD(joinEnd));		
+			 ActManager actmanager = new ActManager();
 			
-			//实例化user
-			Department dep = new Department();
-		//把参数对应放入实体类user属性中
-		dep.setDepID(depID);
-		dep.setDepName(depName);
 
-		DepManager depmanager = new DepManager();
-
-		if(depmanager.edit(dep)>0){
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
-		list_user(request, response);
+		if(actmanager.edit(activity)>0){
+			list_user(request, response);
 		}else{
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
 			proccess(request, response, "/page/department/dep_update.jsp");
 		}
 		}catch(Exception e){
@@ -171,11 +181,8 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			act = actmanager.findbyID(actID);
 			Date joinBegin = act.getJoinBegin();
 			Date joinEnd =act.getJoinEnd() ;
-			System.out.println(dateutil.isInTime(date, joinBegin, joinEnd));
-			System.out.println(date);
-			System.out.println(joinBegin);
-			System.out.println(joinEnd);
-			if(dateutil.isInTime(date, joinBegin, joinEnd)){
+			int num = formmanager.people(act.getPeopleNum(), act.getActID());
+			if(dateutil.isInTime(date, joinBegin, joinEnd)&&act.getPeopleNum()>num){
 			int c = formmanager.bao(act,voID);
 			list_vo(request, response);
 			}else{

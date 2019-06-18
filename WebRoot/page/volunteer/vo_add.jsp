@@ -22,7 +22,7 @@
 <div class="panel admin-panel">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>发布活动</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="<%=path%>/ArtServlet?action=add">  
+    <form method="post" class="form-x" action="<%=path%>/VoServlet?action=add">  
          <div class="form-group">
 	        <div class="label">
 	          <label>志愿者ID</label>
@@ -95,7 +95,16 @@
 	          <label>加入时间：</label>
 	        </div>
 	        <div class="field">	       
-                <input type="text" class="input w50"  value="<%=jointime %>" name="joinTime" data-validate="required:数据必填项" />
+                <input type="text" class="input w50"  value="<%=jointime %>" name="joinTime" data-validate="required:数据必填项" readonly="readonly"/>
+            </div>
+      </div>
+      
+             <div class="form-group">
+	        <div class="label">
+	          <label>密码：</label>
+	        </div>
+	        <div class="field">	       
+                <input type="text" class="input w50"  value="" name="password" data-validate="required:数据必填项" />
             </div>
       </div>
       

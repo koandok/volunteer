@@ -18,7 +18,7 @@
 <link rel="shortcut icon" href="images/logo.jpg">
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/My97DatePicker/WdatePicker.js"></script>
 </head>
 
 <body>
@@ -35,7 +35,7 @@ Activity act = (Activity)request.getAttribute("act");
 	          <label>活动Id</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="<%=act.getActID() %>" name="actID" data-validate="required:数据必填项" />
+	          <input type="text" class="input w50"  value="<%=act.getActID() %>" name="actID" readonly="readonly" />
 	          <div class="tips"></div>
 	        </div>
        </div>

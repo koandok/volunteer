@@ -1,10 +1,7 @@
 package com.gxuwz.volunteer.bean.manager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import com.gxuwz.volunteer.bean.entity.*;
@@ -45,7 +42,6 @@ public class ActManager {
 			    Object params[] = new Object [9];
 				params[0] = activity.getActID();
 				params[1] = activity.getActName();
-				System.out.println("222222222"+activity.getActName());
 				params[2] = activity.getContent();
 				params[3] = activity.getPeopleNum();
 				params[4] = activity.getVouserID();
@@ -61,6 +57,32 @@ public class ActManager {
 		   }
 			
 		}
+		
+		public int edit(Activity activity)throws Exception{
+			   try{
+				    String sql="update activity set actName=?,content=?,peopleNum=?,vouserID=?,actBegin=?,actEnd=?,joinBegin=?,joinEnd=? where actID=?";
+	   
+				    
+				    int index=1;
+				    Object params[] = new Object [9];
+
+					params[0] = activity.getActName();
+					params[1] = activity.getContent();
+					params[2] = activity.getPeopleNum();
+					params[3] = activity.getVouserID();
+					params[4] = activity.getActBegin();
+					params[5] = activity.getActEnd();
+					params[6] = activity.getJoinBegin();
+				    params[7] = activity.getJoinEnd();
+					params[8] = activity.getActID();
+				    int count = dbUtil.executeUpate(sql, params);
+				    return count;
+			   }catch(Exception e){
+				   e.printStackTrace();
+				   throw new Exception("add activity failed!"+e.getMessage(),e);
+			   }
+				
+			}
 		
 		public int del(Activity act)throws Exception{
 			   try{

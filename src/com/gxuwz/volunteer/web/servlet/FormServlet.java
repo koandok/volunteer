@@ -63,9 +63,9 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if("".equals(action)){
+		}else if("list_vo".equals(action)){
 			try {
-				
+				list_vo(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -78,7 +78,6 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 
 			String actID = request.getParameter("actID");
 			String voID = request.getParameter("voID");
-			Form form = new Form();
 		FormManager formmanager = new FormManager();
 
 		if(formmanager.qiandao(actID,voID)>0){
@@ -134,9 +133,19 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		String vouserID = (String)session.getAttribute("userid");
 		List<Form> formList = new ArrayList<Form>();			
 		FormManager formmanager = new FormManager();
-		formList = formmanager.findAll(vouserID);
+		formList = formmanager.findAllvu(vouserID);
 		request.setAttribute("formList", formList);
 		proccess(request, response, "/page/form/form_list_vouser.jsp");
+		
+	}
+	public void list_vo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		String voID = (String)session.getAttribute("userid");
+		List<Form> formList = new ArrayList<Form>();			
+		FormManager formmanager = new FormManager();
+		formList = formmanager.findAllvo(voID);
+		request.setAttribute("formList", formList);
+		proccess(request, response, "/page/form/form_list_vo.jsp");
 		
 	}
 }

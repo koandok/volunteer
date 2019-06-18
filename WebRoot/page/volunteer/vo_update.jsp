@@ -23,31 +23,93 @@
 
 <body>
 <%
-Activity act = (Activity)request.getAttribute("act");
+Volunteer vo = (Volunteer)request.getAttribute("vo");
 
  %>
 <div class="panel admin-panel">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加用户</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="<%=path%>/BuildServlet?action=edit">  
+    <form method="post" class="form-x" action="<%=path%>/VoServlet?action=edit">  
+         <div class="form-group">
+	        <div class="label">
+	          <label>志愿者ID</label>
+	        </div>
+	        <div class="field">
+	          <input type="text" class="input w50"  value="<%=vo.getVoID() %>" name="voID" data-validate="required:数据必填项" readonly="readonly"/>
+	          <div class="tips"></div>
+	        </div>
+       </div>
+      
+       <div class="form-group">
+	        <div class="label">
+	          <label>班级ID：</label>
+	        </div>
+	        <div class="field">
+	          <input type="text" class="input w50"  value="<%=vo.getClassID() %>" name="classID" data-validate="required:数据必填项" />
+	          <div class="tips"></div>
+	        </div>
+       </div>
+      
       <div class="form-group">
-        <div class="label">
-          <label>课程编号：</label>
-        </div>
-        <div class="field" align="center">
-          <input  type="text" class="input w50" value="<%=%>" name="buildID" readonly="ture" />
-          <div class="tips"></div>
-        </div>
+	        <div class="label">
+	          <label>志愿者姓名：</label>
+	        </div>
+	        <div class="field">
+	            <input type="text" class="input w50"  value="<%=vo.getVoName()%>" name="voName" data-validate="required:数据必填项" />
+	          <div class="tips"></div>
+	        </div>
+       </div>
+     
+      
+       <div class="form-group">
+	        <div class="label">
+	          <label>电话：</label>
+	        </div>
+	        <div class="field">
+	            <input type="text" class="input w50"  value="<%=vo.getTelephone() %>" name="telephone" data-validate="required:数据必填项" />
+	          <div class="tips"></div>
+	        </div>
+       </div>
+       
+       
+      
+       <div class="form-group">
+	        <div class="label">
+	          <label>二级学院：</label>
+	        </div>
+	        <div class="field">
+	          <input type="text" class="input w50"  value="<%=vo.getDepID() %>" name=depID />
+	          <div class="tips"></div>
+	        </div>
       </div>
-
+      
+      
+       <div class="form-group">
+	        <div class="label">
+	          <label>邮箱：</label>
+	        </div>
+	        <div class="field">	       
+                <input type="text" class="input w50"  value="<%=vo.getEmail() %>" name="email" data-validate="required:数据必填项" />
+            </div>
+      </div>
+      
+    
       <div class="form-group">
-        <div class="label">
-          <label>班号：</label>
-        </div>
-        <div class="field" align="center">
-          <input type="text" class="input w50" value="<%=%>" name="buildName" data-validate="required:请输入班号" />
-          <div class="tips"></div>
-        </div>
+	        <div class="label">
+	          <label>加入时间：</label>
+	        </div>
+	        <div class="field">	       
+                <input type="text" class="input w50"  value="<%=vo.getJoinTime() %>" name="joinTime" data-validate="required:数据必填项" readonly="readonly"/>
+            </div>
+      </div>
+      
+             <div class="form-group">
+	        <div class="label">
+	          <label>密码：</label>
+	        </div>
+	        <div class="field">	       
+                <input type="text" class="input w50"  value="<%=vo.getPassword() %>" name="password" data-validate="required:数据必填项" />
+            </div>
       </div>
 
        <div class="form-group">

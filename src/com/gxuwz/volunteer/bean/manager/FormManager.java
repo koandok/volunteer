@@ -41,11 +41,29 @@ public class FormManager {
 			
 		}
 	
-	public List<Form> findAll(String id) throws Exception{
+	public List<Form> findAllvu(String id) throws Exception{
 		List<Form> formList = new ArrayList<Form>();
 		String sql = "select * from form where 1=1";
 		if(id != null){
 			sql = "select * from form where vouserID = '"+id+"'";
+		}
+		ResultSet rs = dbUtil.executeQuery(sql, null);
+		while(rs.next()){
+			Form form = new Form();
+			form.setActID(rs.getString("actID"));
+			form.setScore(rs.getInt("score"));
+			form.setStatus(rs.getString("status"));
+			form.setVoID(rs.getString("voID"));
+			form.setVouserID(rs.getString("vouserID"));
+			formList.add(form);
+		}
+		return formList;
+	}
+	public List<Form> findAllvo(String id) throws Exception{
+		List<Form> formList = new ArrayList<Form>();
+		String sql = "select * from form where 1=1";
+		if(id != null){
+			sql = "select * from form where voID = '"+id+"'";
 		}
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
@@ -92,5 +110,15 @@ public class FormManager {
 		       e.printStackTrace();
 		       throw e;
 		       }
+	}
+	
+	public int people (int peopleNum,String actID)throws Exception{
+			String sql="select  COUNT(*)num from form  where actID = '"+actID+"'";
+			ResultSet rs = dbUtil.executeQuery(sql, null);
+			
+			rs.next();
+			int num = rs.getInt("num");
+			System.out.println("已有人数"+"num");
+		   return num;
 	}
 }

@@ -1,6 +1,7 @@
 package com.gxuwz.volunteer.web.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,25 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gxuwz.volunteer.bean.entity.Department;
+import com.gxuwz.volunteer.bean.entity.*;
+import com.gxuwz.volunteer.tools.*;
 import com.gxuwz.volunteer.bean.manager.DepManager;
+import com.gxuwz.volunteer.bean.manager.VoManager;
 
-public class DepServlet extends HttpServlet {
+public class VoServlet extends HttpServlet {
+	DateUtil dateutil = new DateUtil();
 private void proccess(HttpServletRequest request,HttpServletResponse response,String path)throws ServletException,IOException{
 		
 		RequestDispatcher rd=request.getRequestDispatcher(path);
 		rd.forward(request, response);
 		
 	}
-
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			doPost(request, response);
-	
+		doPost(request, response);
+
 	}
 
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//定义区分不同处理动作类型参数: list:表示显示列表，add表示添加，input表示录入，edit表示修改，get表示读取单个用户信息
+		
 		String action=request.getParameter("action");
 		System.out.println("11111111111"+action);
 		//选择结构
@@ -76,24 +79,22 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			}
 		}
 
-
-}
-
+	}
+	
 	public void edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
+			Volunteer vo = new Volunteer();
+			vo.setClassID(request.getParameter("classID"));
+			vo.setDepID(request.getParameter("depID"));
+			vo.setEmail(request.getParameter("email"));
+			vo.setPassword(request.getParameter("password"));
+			vo.setTelephone(request.getParameter("telephone"));
+			vo.setVoID(request.getParameter("voID"));
+			vo.setVoName(request.getParameter("voName"));
 
-			String depID = request.getParameter("depID");
-			String depName = request.getParameter("depName");
+			VoManager vomanager = new VoManager();
 
-			// 实例化user
-			Department dep = new Department();
-			// 把参数对应放入实体类user属性中
-			dep.setDepID(depID);
-			dep.setDepName(depName);
-
-			DepManager depmanager = new DepManager();
-
-			if (depmanager.edit(dep) > 0) {
+			if (vomanager.edit(vo) > 0) {
 				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 				list(request, response);
 			} else {
@@ -108,15 +109,15 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 	public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 
-			String depID = request.getParameter("depID");
+			String voID = request.getParameter("voID");
 
-			Department dep = new Department();
+			Volunteer vo = new Volunteer();
 			// 把参数对应放入实体类user属性中
-			dep.setDepID(depID);
+			vo.setVoID(voID);
 
-			DepManager depmanager = new DepManager();
+			VoManager vomanager = new VoManager();
 
-			if (depmanager.del(dep) > 0) {
+			if (vomanager.del(vo) > 0) {
 				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 				list(request, response);
 			} else {
@@ -129,34 +130,32 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 	}
 
 	public void get(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String depID = request.getParameter("depID");
+		Volunteer vo = new Volunteer();
 
-		Department dep = new Department();
-		// 把参数对应放入实体类user属性中
-		dep.setDepID(depID);
+		String voID = request.getParameter("voID");
 
-		DepManager depmanager = new DepManager();
-		dep = depmanager.findAllbyID(depID);
-		request.setAttribute("dep", dep);
-		proccess(request, response, "/page/department/dep_update.jsp");
+		VoManager vomanager = new VoManager();
+		vo = vomanager.findAllbyID(voID);
+		request.setAttribute("vo", vo);
+		proccess(request, response, "/page/volunteer/vo_update.jsp");
 
 	}
 
 	public void add(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
+			Volunteer vo = new Volunteer();
+			vo.setClassID(request.getParameter("classID"));
+			vo.setDepID(request.getParameter("depID"));
+			vo.setEmail(request.getParameter("email"));
+			vo.setJoinTime(dateutil.StringtoD(request.getParameter("joinTime")));
+			vo.setPassword(request.getParameter("password"));
+			vo.setTelephone(request.getParameter("telephone"));
+			vo.setVoID(request.getParameter("voID"));
+			vo.setVoName(request.getParameter("voName"));
+			
+			VoManager vomanager = new VoManager();
 
-			String depID = request.getParameter("depID");
-			String depName = request.getParameter("depName");
-
-			// 实例化user
-			Department dep = new Department();
-			// 把参数对应放入实体类user属性中
-			dep.setDepID(depID);
-			dep.setDepName(depName);
-
-			DepManager depmanager = new DepManager();
-
-			if (depmanager.add(dep) > 0) {
+			if (vomanager.add(vo) > 0) {
 				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 				list(request, response);
 			} else {
@@ -170,23 +169,22 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 
 	public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		List<Department> depList = new ArrayList<Department>();
-		DepManager depmanager = new DepManager();
-		depList = depmanager.findAll();
-		request.setAttribute("depList", depList);
-		proccess(request, response, "/page/department/dep_list.jsp");
+		List<Volunteer> voList = new ArrayList<Volunteer>();
+		VoManager vomanager = new VoManager();
+		voList = vomanager.findAll(null);
+		request.setAttribute("voList", voList);
+		proccess(request, response, "/page/volunteer/vo_list.jsp");
 
 	}
 
 	public void seach(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String keywords = request.getParameter("keywords");
-		List<Department> depList = new ArrayList<Department>();
-		DepManager depmanager = new DepManager();
-		depList = depmanager.Seach(keywords);
-		request.setAttribute("depList", depList);
-		proccess(request, response, "/page/department/dep_list.jsp");
+		List<Volunteer> voList = new ArrayList<Volunteer>();
+		VoManager vomanager = new VoManager();
+		voList = vomanager.findAll(keywords);
+		request.setAttribute("voList", voList);
+		proccess(request, response, "/page/volunteer/vo_list.jsp");
 
 	}
 
-	}
-
+}
