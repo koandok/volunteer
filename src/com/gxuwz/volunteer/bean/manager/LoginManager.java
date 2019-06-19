@@ -17,15 +17,13 @@ public class LoginManager {
 			return a;
 	}
 
-	public boolean stulogin(String name, String password) throws Exception {
+	public boolean vologin(String name, String password) throws Exception {
 		boolean a = false;
-		String sql = "select * from student where stuID = '"+name+"'and password = '"+password+"'";
+		String sql = "select * from volunteer where voID = '"+name+"'and password = '"+password+"'";
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		if(rs.next()){
 			a = true;
-			System.out.println("--"+a);
 		}
-		System.out.println("++"+a);
 		return a;
 	}
 

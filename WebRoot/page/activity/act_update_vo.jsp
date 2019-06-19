@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/base/base.jsp"%>
+<%@ page import = "com.gxuwz.volunteer.bean.manager.*" %>
+<%@ page import = "com.gxuwz.volunteer.bean.entity.*" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -20,16 +22,20 @@
 </head>
 
 <body>
+<%
+Activity act = (Activity)request.getAttribute("act");
+
+ %>
 <div class="panel admin-panel">
-  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>发布活动</strong></div>
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加用户</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="<%=path%>/ArtServlet?action=add">  
+    <form method="post" class="form-x" action="<%=path%>/ArtServlet?action=edit">  
          <div class="form-group">
 	        <div class="label">
 	          <label>活动Id</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="" name="actID" data-validate="required:数据必填项" />
+	          <input type="text" class="input w50"  value="<%=act.getActID() %>" name="actID"  readonly="readonly" />
 	          <div class="tips"></div>
 	        </div>
        </div>
@@ -39,7 +45,7 @@
 	          <label>活动标题：</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="" name="actName" data-validate="required:数据必填项" />
+	          <input type="text" class="input w50"  value="<%=act.getActName() %>" name="actName" readonly="readonly" data-validate="required:数据必填项" />
 	          <div class="tips"></div>
 	        </div>
        </div>
@@ -49,7 +55,7 @@
 	          <label>内容：</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="" name="content" />
+	          <input type="text" class="input w50" style="width: 280px;height:120px;" value="<%=act.getContent() %>" readonly="readonly" name="content" />
 	          <div class="tips"></div>
 	        </div>
        </div>
@@ -60,7 +66,7 @@
 	          <label>要求人数：</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="" name="peopleNum" />
+	          <input type="text" class="input w50"  value="<%=act.getPeopleNum() %>" readonly="readonly" name="peopleNum" />
 	          <div class="tips"></div>
 	        </div>
        </div>
@@ -69,10 +75,10 @@
       
        <div class="form-group">
 	        <div class="label">
-	          <label>负责人：</label>
+	          <label>发起人：</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="" name="vouserID" />
+	          <input type="text" class="input w50"  value="<%=act.getVouserID() %>" readonly="readonly" name="vouserID" />
 	          <div class="tips"></div>
 	        </div>
       </div>
@@ -83,7 +89,7 @@
 	          <label>活动开始时间：</label>
 	        </div>
 	        <div class="field">	       
-              <input class="Wdate" autocomplete="off" name="actBegin" type="text" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
+              <input class="Wdate" autocomplete="off" name="actBegin" value="<%=act.getActBegin() %>" type="text" readonly="readonly" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
             </div>
       </div>
       
@@ -92,7 +98,7 @@
 	          <label>活动结束时间：</label>
 	        </div>
 	        <div class="field">	       
-              <input class="Wdate" autocomplete="off" name="actEnd" type="text" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
+              <input class="Wdate" autocomplete="off" name="actEnd" type="text" value="<%=act.getActEnd() %>"  readonly="readonly" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
             </div>
       </div>
       
@@ -102,7 +108,7 @@
 	          <label>报名时间：</label>
 	        </div>
 	        <div class="field">	       
-              <input class="Wdate" autocomplete="off" name="joinBegin" type="text" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
+              <input class="Wdate" autocomplete="off" name="joinBegin" type="text" value="<%=act.getJoinBegin() %>" readonly="readonly" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
             </div>
       </div>
       
@@ -113,35 +119,23 @@
 	          <label>报名截止时间：</label>
 	        </div>
 	        <div class="field">	       
-              <input class="Wdate" autocomplete="off" name="joinEnd" type="text" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
+              <input class="Wdate" autocomplete="off" name="joinEnd" type="text" value="<%=act.getJoinEnd() %>" readonly="readonly" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
             </div>
       </div>
-      <%
-				Object obj = request.getAttribute("flag");
-				
-				if (obj!= null){	
-				 %>
-				 <div style="txxt-align:center">
-				 <span>error:键位冲突</span>
-				 </div>
-				 <%} %>
+
        <div class="form-group">
         <div class="label">
           <label></label>
         </div>
         <div class="field" >
-          <button class="button bg-main icon-check-square-o" type="submit"> 添加-</button>
+         <div class="button-group"> <a class="button border-main" href="<%=path%>/ArtServlet?action=list_vo"><span class="icon-edit"></span> 返回</a> 
+         <a class="button border-red" href="<%=path%>/ArtServlet?action=bao&actID=<%=act.getActID()%>" ><span class="icon-trash-o"></span> 报名</a> </div>
+
         </div>
       </div>
-  
-          </div>
-          </form>
-      </div>
-    
+    </form>
   </div>
-  
 </div>
-
 
 </body>
 </html>

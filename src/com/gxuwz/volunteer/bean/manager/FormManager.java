@@ -13,13 +13,14 @@ public class FormManager {
 	private DbUtil dbUtil =new DbUtil();
 	public int bao(Activity activity,String ID)throws Exception{
 		   try{
-			    String sql="insert into form(actID,voID)";
-			    sql+="values(?,?)";		   
+			    String sql="insert into form(actID,voID,vouserID)";
+			    sql+="values(?,?,?)";		   
 			    
 			    int index=1;
-			    Object params[] = new Object [2];
+			    Object params[] = new Object [3];
 				params[0] = activity.getActID();
 				params[1] = ID;
+				params[2] = activity.getVouserID();
 			    int count = dbUtil.executeUpate(sql, params);
 			    return count;
 		   }catch(Exception e){
@@ -118,7 +119,7 @@ public class FormManager {
 			
 			rs.next();
 			int num = rs.getInt("num");
-			System.out.println("已有人数"+"num");
+			System.out.println("已有人数"+num);
 		   return num;
 	}
 }

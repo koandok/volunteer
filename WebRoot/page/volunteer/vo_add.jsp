@@ -108,11 +108,23 @@
             </div>
       </div>
       
-      
+            <%
+				Object obj = request.getAttribute("flag");
+				
+				if (obj!= null){	
+				 %>
+				 <div style="txxt-align:center">
+				 <span>error:操作失败</span>
+				 </div>
+				 <%}%> 
+            <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
         <div class="field" >
-          <button class="button bg-main icon-check-square-o" type="submit"> 发布</button>
-  
-          </div>
+          <button class="button bg-main icon-check-square-o" type="submit"> 添加-</button>
+        </div>
+      </div>
           </form>
       </div>
     

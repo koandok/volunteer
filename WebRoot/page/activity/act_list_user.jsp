@@ -38,6 +38,15 @@
           <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
           <a href="<%=path%>/BuildServlet?action=seach" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li> --%>
       </ul>
+      <%
+				Object obj = request.getAttribute("flag");
+				
+				if (obj!= null){	
+				 %>
+				 <div style="txxt-align:center">
+				 <span>error:操作失败</span>
+				 </div>
+				 <%}%> 
     </div>
     <!-- </form>  -->
     <table class="table table-hover text-center">

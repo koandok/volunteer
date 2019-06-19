@@ -30,7 +30,10 @@
     <servlet-name>VoServlet</servlet-name>
     <servlet-class>com.gxuwz.volunteer.web.servlet.VoServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>DepServlet</servlet-name>
+    <servlet-class>com.gxuwz.volunteer.web.servlet.DepServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>ArtServlet</servlet-name>
@@ -47,5 +50,9 @@
   <servlet-mapping>
     <servlet-name>VoServlet</servlet-name>
     <url-pattern>/VoServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>DepServlet</servlet-name>
+    <url-pattern>/DepServlet</url-pattern>
   </servlet-mapping>
 </web-app>

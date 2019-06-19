@@ -58,24 +58,28 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		LoginManager loginmanager = new  LoginManager();
 		try{
 		if(user.equals("A")){
-			if(loginmanager.stulogin(name, password)){
+			if(loginmanager.vologin(name, password)){
 				proccess(request, response, "/index_stu.jsp");
 			}else{
+				request.setAttribute("flag", "error");
 				proccess(request, response, "/login.jsp");
 			}
 			}else if(user.equals("B")){
 			if(loginmanager.vouserlogin(name, password)){
 				proccess(request, response, "/index_vouser.jsp");
 			}else{
+				request.setAttribute("flag", "error");
 				proccess(request, response, "/login.jsp");
 			}
 			}else if(user.equals("C")){
 				if(loginmanager.userlogin(name, password)){
 					proccess(request, response, "/index_user.jsp");
 				}else{
+					request.setAttribute("flag", "error");
 					proccess(request, response, "/login.jsp");
 				}
 			}else{
+				request.setAttribute("flag", "error");
 				proccess(request, response, "/login.jsp");
 			}
 		}catch(Exception e){

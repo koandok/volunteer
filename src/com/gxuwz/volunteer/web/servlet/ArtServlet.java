@@ -93,6 +93,13 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}else if("getvo".equals(action)){
+					try {
+						getvo(request, response);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 	}
@@ -110,8 +117,6 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			Activity activity = new Activity();
 			activity.setActID(actID);
 			activity.setActName(actName);
-			System.out.println("111111111"+actName);
-			System.out.println("333333333"+activity.getActName());
 			activity.setContent(content);
 			activity.setPeopleNum(Integer.parseInt(peopleNum));
 			activity.setVouserID(vouserID);
@@ -125,7 +130,8 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		if(actmanager.edit(activity)>0){
 			list_user(request, response);
 		}else{
-			proccess(request, response, "/page/department/dep_update.jsp");
+			request.setAttribute("flag", "error");
+			proccess(request, response, "/page/activity/act_update.jsp");
 		}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -144,11 +150,10 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			ActManager actmanager = new ActManager();
 
 		if(actmanager.del(act)>0){
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 		list_user(request, response);
 		}else{
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
-			proccess(request, response, "/page/user/user_updata.jsp");
+			request.setAttribute("flag", "error");
+			proccess(request, response, "/page/activity/act_list_user.jsp");
 		}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -157,17 +162,25 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 
 		public void get(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String actID = request.getParameter("actID");
-			
 			Activity act = new Activity();
-			//把参数对应放入实体类user属性中
 			ActManager actmanager = new ActManager();
 			act = actmanager.findbyID(actID);
 			request.setAttribute("act", act);
-			
 			proccess(request, response, "/page/activity/act_update.jsp");
 			
 		}
+		
+		public void getvo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String actID = request.getParameter("actID");
+			Activity act = new Activity();
+			ActManager actmanager = new ActManager();
+			act = actmanager.findbyID(actID);
+			request.setAttribute("act", act);
+			proccess(request, response, "/page/activity/act_update_vo.jsp");
+			
+		}
 		public void bao(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			FormServlet fs = new FormServlet();
 			String actID = request.getParameter("actID");
 			
 			Date date = new Date();
@@ -184,8 +197,9 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			int num = formmanager.people(act.getPeopleNum(), act.getActID());
 			if(dateutil.isInTime(date, joinBegin, joinEnd)&&act.getPeopleNum()>num){
 			int c = formmanager.bao(act,voID);
-			list_vo(request, response);
+			fs.list_vo(request, response);
 			}else{
+				request.setAttribute("flag", "error");
 				list_vo(request, response);
 			}
 			
@@ -204,12 +218,9 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			String actEnd = request.getParameter("actEnd");
 			String joinBegin = request.getParameter("joinBegin");
 			String joinEnd = request.getParameter("joinEnd");
-							
 			Activity activity = new Activity();
 			activity.setActID(actID);
 			activity.setActName(actName);
-			System.out.println("111111111"+actName);
-			System.out.println("333333333"+activity.getActName());
 			activity.setContent(content);
 			activity.setPeopleNum(Integer.parseInt(peopleNum));
 			activity.setVouserID(vouserID);
@@ -221,11 +232,10 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			 ActManager actmanager = new ActManager();
 			
 				if(actmanager.add(activity)>0){
-					//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 					list_user(request, response);
 					}else{
-					//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
-						proccess(request, response, "/page/build/build_add.jsp");
+						request.setAttribute("flag", "error");
+						proccess(request, response, "/page/activity/act_add.jsp");
 					}
 					}catch(Exception e){
 				e.printStackTrace();

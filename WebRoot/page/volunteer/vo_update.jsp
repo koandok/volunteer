@@ -111,7 +111,15 @@ Volunteer vo = (Volunteer)request.getAttribute("vo");
                 <input type="text" class="input w50"  value="<%=vo.getPassword() %>" name="password" data-validate="required:数据必填项" />
             </div>
       </div>
-
+      <%
+				Object obj = request.getAttribute("flag");
+				
+				if (obj!= null){	
+				 %>
+				 <div style="txxt-align:center">
+				 <span>error:操作失败</span>
+				 </div>
+				 <%}%> 
        <div class="form-group">
         <div class="label">
           <label></label>

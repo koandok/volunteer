@@ -122,7 +122,15 @@ Activity act = (Activity)request.getAttribute("act");
               <input class="Wdate" autocomplete="off" name="joinEnd" type="text" value="<%=act.getJoinEnd() %>" style="width: 280px;height:45px; color: #0000AA;" onClick="WdatePicker()">
             </div>
       </div>
-
+      <%
+				Object obj = request.getAttribute("flag");
+				
+				if (obj!= null){	
+				 %>
+				 <div style="txxt-align:center">
+				 <span>error:操作失败</span>
+				 </div>
+				 <%}%> 
        <div class="form-group">
         <div class="label">
           <label></label>

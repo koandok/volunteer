@@ -13,7 +13,7 @@ private DbUtil dbUtil =new DbUtil();
 	
 	public List<Department> findAll() throws Exception{
 		List<Department> depList = new ArrayList<Department>();
-		String sql = "select * from sys_department where 1=1";
+		String sql = "select * from department where 1=1";
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
 			Department dep = new Department();
@@ -25,9 +25,9 @@ private DbUtil dbUtil =new DbUtil();
 	}
 /*	public List<Department> findAll(String keywords) throws Exception{
 		List<Department> depList = new ArrayList<Department>();
-		String sql = "select * from sys_department where 1=1";
+		String sql = "select * from department where 1=1";
 		if(keywords!=null){
-			sql = "select * from sys_department where depID like '%"+keywords+"%'  ";
+			sql = "select * from department where depID like '%"+keywords+"%'  ";
 		}
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
@@ -41,9 +41,9 @@ private DbUtil dbUtil =new DbUtil();
 	
 	public List<Department> Seach(String keywords) throws Exception{
 		List<Department> depList = new ArrayList<Department>();
-		String sql = "select * from sys_department where 1=1";
+		String sql = "select * from department where 1=1";
 			  if(keywords!=null){
-			   sql="select * from sys_department where depID like '%"+keywords+"%'  ";
+			   sql="select * from department where depID like '%"+keywords+"%'  ";
 		      }
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
@@ -57,7 +57,7 @@ private DbUtil dbUtil =new DbUtil();
 	
 	public Department findAllbyID(String ID)throws Exception{
 		try {
-			String sql = "select *  from sys_department WHERE depID='"+ID+"'";
+			String sql = "select *  from department WHERE depID='"+ID+"'";
 			
 		    ResultSet rs = dbUtil.executeQuery(sql, null);
 		    Department dep = new Department();
@@ -74,7 +74,7 @@ private DbUtil dbUtil =new DbUtil();
 	
 	public int edit(Department dep)throws Exception{
 		try {
-			String sql = "update sys_department set depName=? WHERE depID=?";
+			String sql = "update department set depName=? WHERE depID=?";
 			Object params[] = new Object [2];
 			params[0] = dep.getDepName();
 			params[1] = dep.getDepID();
@@ -88,7 +88,7 @@ private DbUtil dbUtil =new DbUtil();
 	
 	public int del(Department dep)throws Exception{
 		try {
-			String sql = "delete from sys_department where depID=?";
+			String sql = "delete from department where depID=?";
 			Object params[] = new Object [1];
 			params[0] = dep.getDepID();
 
@@ -102,7 +102,7 @@ private DbUtil dbUtil =new DbUtil();
 	
 	public int add(Department dep)throws Exception{
 		try {
-			String sql = "insert into sys_department(depID,depName)values(?,?)";
+			String sql = "insert into department(depID,depName)values(?,?)";
 			Object params[] = new Object [2];
 			params[0] = dep.getDepID();
 			params[1] = dep.getDepName();

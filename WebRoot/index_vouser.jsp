@@ -30,13 +30,9 @@
    
 <li><h2><a href="<%=path %>/DepServlet?action=list" target="right"><span class="icon-user"></span>课程管理</a></h2></li>
  
-<li> <h2><a href="page\student\stu_list.jsp" target="right"><span class="icon-user"></span>学生信息管理</a></h2></li>
+<li> <h2><a href="<%=path %>/FormServlet?action=list_vouser" target="right"><span class="icon-user"></span>学生信息管理</a></h2></li>
     
-  <h2><span class="icon-user"></span>请假信息管理</h2>
-  <ul>
-    <li><a href="<%=path %>/FormServlet?action=list_vouser" target="right"><span class="icon-caret-right"></span>报名表管理</a></li>
-    <li><a href="page\leave\leave_instout_list.jsp" target="right"><span class="icon-caret-right"></span>导出请假名单</a></li>      
-  </ul>
+
   
  
   

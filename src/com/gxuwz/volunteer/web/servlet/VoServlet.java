@@ -95,11 +95,10 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			VoManager vomanager = new VoManager();
 
 			if (vomanager.edit(vo) > 0) {
-				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 				list(request, response);
 			} else {
-				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
-				proccess(request, response, "/page/department/dep_update.jsp");
+				request.setAttribute("flag", "error");
+				proccess(request, response, "/page/volunteer/vo_update.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,11 +117,9 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			VoManager vomanager = new VoManager();
 
 			if (vomanager.del(vo) > 0) {
-				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 				list(request, response);
 			} else {
-				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
-				proccess(request, response, "/page/user/user_updata.jsp");
+				proccess(request, response, "/error.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,11 +153,10 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			VoManager vomanager = new VoManager();
 
 			if (vomanager.add(vo) > 0) {
-				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 				list(request, response);
 			} else {
-				// response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
-				proccess(request, response, "/page/build/build_add.jsp");
+				request.setAttribute("flag", "error");
+				proccess(request, response, "/page/volunteer/vo_add.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

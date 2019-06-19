@@ -81,11 +81,10 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		FormManager formmanager = new FormManager();
 
 		if(formmanager.qiandao(actID,voID)>0){
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 		list_vouser(request, response);
 		}else{
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
-			proccess(request, response, "/page/department/dep_update.jsp");
+			request.setAttribute("flag", "error");
+			list_vouser(request, response);
 		}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -103,11 +102,10 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		FormManager formmanager = new FormManager(); 
 
 		if(formmanager.pingfen(form)>0){
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");
 		list_vouser(request, response);
 		}else{
-		//response.sendRedirect("/leaveMVC/WebRoot/page/user/user_updata.jsp");	
-			proccess(request, response, "/page/department/dep_update.jsp");
+			request.setAttribute("flag", "error");
+			list_vouser(request, response);
 		} 
 		}catch(Exception e){
 			e.printStackTrace();

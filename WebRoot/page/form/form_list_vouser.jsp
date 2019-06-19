@@ -63,13 +63,12 @@
 		    }else if(status.equals("1")){
 		    status = "已签到";
 		    }
-		    
 				%>
 			<tr>
 				<td><%=actID%></td>				
 				<td><%=voID%></td>								
 				<td><%=status%></td>
-				<td><%=score%></td>	
+				<td><%=score%></tsd>	
 				<td><%=vouserID%></td>		
 				<td>	
 				<div class="button-group"> <a class="button border-main" href="<%=path%>/FormServlet?actID=<%=actID%>&action=qiandao&voID=<%=voID%>"><span class="icon-edit"></span>签到</a> 

@@ -49,7 +49,15 @@ Department dep = (Department)request.getAttribute("dep");
           <div class="tips"></div>
         </div>
       </div>
-
+      <%
+				Object obj = request.getAttribute("flag");
+				
+				if (obj!= null){	
+				 %>
+				 <div style="txxt-align:center">
+				 <span>error:操作失败</span>
+				 </div>
+				 <%}%> 
        <div class="form-group">
         <div class="label">
           <label></label>
