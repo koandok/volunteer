@@ -54,6 +54,7 @@
 			<%  //设置编码方式
 		       List<Department> depList = new ArrayList<Department>();
 			   depList = (List)request.getAttribute("depList");
+			 
 			   int index = 1;
 			   for(Department dep : depList){
 			   	  String depID = dep.getDepID();

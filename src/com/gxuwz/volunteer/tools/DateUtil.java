@@ -20,6 +20,8 @@ public class DateUtil {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     return sdf.parse(string);
 	}
+	
+	
 	public  boolean isInTime(Date submissionDate, Date startTime, Date endTime) {
 
 		if (submissionDate.getTime() == startTime.getTime()

@@ -173,6 +173,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		List<Department> depList = new ArrayList<Department>();
 		DepManager depmanager = new DepManager();
 		depList = depmanager.findAll();
+		  System.out.print("66666666"+depList.size());
 		request.setAttribute("depList", depList);
 		proccess(request, response, "/page/department/dep_list.jsp");
 
@@ -183,6 +184,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		List<Department> depList = new ArrayList<Department>();
 		DepManager depmanager = new DepManager();
 		depList = depmanager.Seach(keywords);
+		 System.out.print("66666666"+depList.size());
 		request.setAttribute("depList", depList);
 		proccess(request, response, "/page/department/dep_list.jsp");
 

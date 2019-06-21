@@ -50,13 +50,19 @@ Form form = (Form)request.getAttribute("form");
           <div class="tips"></div>
         </div>
       </div>
-      
+      <% 
+		String a = "未签到";
+		if(form.getStatus().equals("1")){
+		a = "已签到";
+		}      
+
+      %>
       <div class="form-group">
         <div class="label">
           <label>签到状态：</label>
         </div>
         <div class="field" align="center">
-          <input type="text" class="input w50" value="<%=form.getStatus()%>" name="status" data-validate="required:请输入班号" readonly="ture"/>
+          <input type="text" class="input w50" value="<%=a%>" name="status" data-validate="required:请输入班号" readonly="ture"/>
           <div class="tips"></div>
         </div>
       </div>
