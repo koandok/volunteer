@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/base/base.jsp"%>
 <%@ page import="com.gxuwz.volunteer.tools.*" %>
+<%@page import="java.sql.ResultSet"%>
+<%@ page language="java" import="com.gxuwz.volunteer.database.*"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -64,14 +66,24 @@
 	        </div>
        </div>
        
-       
+        <%
+       DbUtil dbutil = new DbUtil();
+       String sql = "select depID from department where 1=1";
+       ResultSet rs = dbutil.executeQuery(sql, null);
+      
+        %>
       
        <div class="form-group">
 	        <div class="label">
-	          <label>二级学院：</label>
+	          <label>二级学院ID：</label>
 	        </div>
 	        <div class="field">
-	          <input type="text" class="input w50"  value="" name=depID />
+	          <!-- <input type="text" class="input w50"  value="" name=depID /> -->
+	          <select  name="depID" class="input w50">
+	        <% while(rs.next()){ %>
+	          <option value="<%=rs.getString("depID")%>"><%=rs.getString("depID")%></option> 
+	          <%} %>
+	          </select>
 	          <div class="tips"></div>
 	        </div>
       </div>

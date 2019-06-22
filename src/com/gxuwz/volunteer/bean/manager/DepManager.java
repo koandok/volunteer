@@ -11,9 +11,12 @@ import com.gxuwz.volunteer.database.DbUtil;
 public class DepManager {
 private DbUtil dbUtil =new DbUtil();
 	
-	public List<Department> findAll() throws Exception{
+	public List<Department> findAll(String keywords) throws Exception{
 		List<Department> depList = new ArrayList<Department>();
 		String sql = "select * from department where 1=1";
+		  if(keywords!=null){
+		   sql="select * from department where depID like '%"+keywords+"%'  ";
+	      }
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
 			Department dep = new Department();
@@ -23,37 +26,7 @@ private DbUtil dbUtil =new DbUtil();
 		}
 		return depList;
 	}
-/*	public List<Department> findAll(String keywords) throws Exception{
-		List<Department> depList = new ArrayList<Department>();
-		String sql = "select * from department where 1=1";
-		if(keywords!=null){
-			sql = "select * from department where depID like '%"+keywords+"%'  ";
-		}
-		ResultSet rs = dbUtil.executeQuery(sql, null);
-		while(rs.next()){
-			Department dep = new Department();
-			dep.setDepID(rs.getString("depID"));
-			dep.setDepName(rs.getString("depName"));
-			depList.add(dep);
-		}
-		return depList;
-	}*/
-	
-	public List<Department> Seach(String keywords) throws Exception{
-		List<Department> depList = new ArrayList<Department>();
-		String sql = "select * from department where 1=1";
-			  if(keywords!=null){
-			   sql="select * from department where depID like '%"+keywords+"%'  ";
-		      }
-		ResultSet rs = dbUtil.executeQuery(sql, null);
-		while(rs.next()){
-			Department dep = new Department();
-			dep.setDepID(rs.getString("depID"));
-			dep.setDepName(rs.getString("depName"));
-			depList.add(dep);
-		}
-		return depList;
-	}
+
 	
 	public Department findAllbyID(String ID)throws Exception{
 		try {

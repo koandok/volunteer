@@ -127,21 +127,23 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			}
 		}
 	public void list_vouser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String keywords = request.getParameter("keywords");
 		HttpSession session = request.getSession();
 		String vouserID = (String)session.getAttribute("userid");
 		List<Form> formList = new ArrayList<Form>();			
 		FormManager formmanager = new FormManager();
-		formList = formmanager.findAllvu(vouserID);
+		formList = formmanager.findAllvu(vouserID,keywords);
 		request.setAttribute("formList", formList);
 		proccess(request, response, "/page/form/form_list_vouser.jsp");
 		
 	}
 	public void list_vo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String keywords = request.getParameter("keywords");
 		HttpSession session = request.getSession();
 		String voID = (String)session.getAttribute("userid");
 		List<Form> formList = new ArrayList<Form>();			
 		FormManager formmanager = new FormManager();
-		formList = formmanager.findAllvo(voID);
+		formList = formmanager.findAllvo(voID,keywords);
 		request.setAttribute("formList", formList);
 		proccess(request, response, "/page/form/form_list_vo.jsp");
 		

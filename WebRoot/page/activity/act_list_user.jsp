@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<form method="post" action="<%-- <%=path%>/BuildServlet?action=seach --%>" id="listform">
+<form method="post" action="<%=path%>/ArtServlet?action=list_user " id="listform">
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 用户列表</strong> </div>
    <%--  <form method="post" action="<%=path%>/BuildServlet?action=seach" > --%>
@@ -40,7 +40,6 @@
       </ul>
       <%
 				Object obj = request.getAttribute("flag");
-				
 				if (obj!= null){	
 				 %>
 				 <div style="txxt-align:center">

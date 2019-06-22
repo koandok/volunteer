@@ -11,10 +11,13 @@ public class ActManager {
 	private DbUtil dbUtil =new DbUtil();
 	
 	
-	 public List<Activity> findAll()throws Exception{
+	 public List<Activity> findAll(String keywords)throws Exception{
+	
 	        List<Activity> actlist =new ArrayList<Activity>();				
-				String sql="select * from activity where 1=1";
-				
+	        String sql = "select * from activity where 1=1";
+			if(keywords!=null&&!keywords.equals("")){
+				sql = "select * from activity where actID like '%"+keywords+"%' ";
+			}
 			    ResultSet rs = dbUtil.executeQuery(sql, null);        
 	            while(rs.next()){   	
 	            	Activity act = new Activity();
@@ -27,7 +30,7 @@ public class ActManager {
 					act.setActEnd(rs.getDate("actEnd"));
 					act.setJoinBegin(rs.getDate("joinBegin"));
 					act.setJoinEnd(rs.getDate("joinEnd"));
-					actlist.add(act);          		            
+					actlist.add(act);    
 	            }
 	        
 	        return actlist;
@@ -114,7 +117,6 @@ public class ActManager {
 				act.setActEnd(rs.getDate("actEnd"));
 				act.setJoinBegin(rs.getDate("joinBegin"));
 				act.setJoinEnd(rs.getDate("joinEnd"));
-
 			}
 
 			return act;

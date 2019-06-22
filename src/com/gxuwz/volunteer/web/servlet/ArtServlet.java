@@ -35,7 +35,6 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//定义区分不同处理动作类型参数: list:表示显示列表，add表示添加，input表示录入，edit表示修改，get表示读取单个用户信息
 				String action=request.getParameter("action");
-				System.out.println("11111111111"+action);
 				//选择结构
 				if("list_user".equals(action)){
 					try {
@@ -58,13 +57,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}else if("seach".equals(action)){
-					try {
-						seach(request, response);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				
 				}else if("edit".equals(action)){
 					try {
 						edit(request,response);
@@ -186,7 +179,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			Date date = new Date();
 			HttpSession session = request.getSession();
 			String voID = (String)session.getAttribute("userid");
-
+			System.out.println("?????"+voID);
 			Activity act = new Activity();
 			//把参数对应放入实体类user属性中
 			ActManager actmanager = new ActManager();
@@ -243,24 +236,24 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			  }
 
 		public void list_user(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+			String keywords= request.getParameter("keywords");
 			List<Activity> actList = new ArrayList<Activity>();			
 			ActManager actmanager = new ActManager();
-			actList = actmanager.findAll();
+			actList = actmanager.findAll(keywords);
 			request.setAttribute("actList", actList);
 			proccess(request, response, "/page/activity/act_list_user.jsp");
 			
 		}
 		public void list_vo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+			String keywords= request.getParameter("keywords");
 			List<Activity> actList = new ArrayList<Activity>();			
 			ActManager actmanager = new ActManager();
-			actList = actmanager.findAll();
+			actList = actmanager.findAll(keywords);
 			request.setAttribute("actList", actList);
 			proccess(request, response, "/page/activity/act_list_vo.jsp");
 			
 		}
-		public void seach(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		/*public void seach(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String keywords= request.getParameter("keywords");
 			List<Department> depList = new ArrayList<Department>();			
 			DepManager depmanager = new DepManager();
@@ -269,5 +262,5 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 			proccess(request, response, "/page/department/dep_list.jsp");
 			
 			
-		}
+		}*/
 }

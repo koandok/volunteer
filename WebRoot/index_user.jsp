@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>请假管理系统</title>  
+    <title>志愿者管理系统</title>  
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="shortcut icon" href="images/logo.jpg">
@@ -17,11 +17,11 @@
 <body style="background-color:#f2f9fd;">
 <div class="header bg-main">
   <div class="logo margin-big-left fadein-top">
-    <h1><img src="images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />请假管理系统</h1>
+    <h1><img src="images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />志愿者管理系统</h1>
   </div>
   <%String admin = (String)session.getAttribute("userid"); 
  %>
-  <div class="head-l" ><a href="" target="_blank" style="color:#FFF" ><span class="icon-user"></span> 欢迎 <%=admin%></a>&nbsp;&nbsp;<a class="button button-little bg-green" href="index_user.jsp" target="_blank" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="augh\action_loginout.jsp"><span class="icon-power-off"></span> 退出登录</a> </div>
+  <div class="head-l" ><a href="" target="_blank" style="color:#FFF" ><span class="icon-user"></span> 欢迎 <%=admin%></a>&nbsp;&nbsp;<a class="button button-little bg-green" href="index_user.jsp" target="_blank" ><span class="icon-home"></span> 首页</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="login.jsp"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
@@ -30,8 +30,7 @@
   
   <li><h2><a href="<%=path %>/VoServlet?action=list" target="right"><span class="icon-user"></span>志愿者管理</a></h2></li>
  
-  <li><h2><a href="page/instructor/inst_list.jsp" target="right"><span class="icon-user"></span>辅导员管理</a></h2></li>
- 
+ <li><h2><a href="<%=path %>/DepServlet?action=list" target="right"><span class="icon-user"></span>二级学院管理</a></h2></li>
 </div>
 <script type="text/javascript">
 $(function(){

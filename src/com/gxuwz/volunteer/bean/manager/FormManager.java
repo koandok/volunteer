@@ -42,11 +42,14 @@ public class FormManager {
 			
 		}
 	
-	public List<Form> findAllvu(String id) throws Exception{
+	public List<Form> findAllvu(String id,String keywords) throws Exception{
 		List<Form> formList = new ArrayList<Form>();
-		String sql = "select * from form where 1=1";
-		if(id != null){
+		String sql = "";
+		if(keywords == null||keywords.equals("")){
 			sql = "select * from form where vouserID = '"+id+"'";
+		}
+		else{
+			sql = "select * from form where vouserID = '"+id+"' and actID like '%"+keywords+"%'";
 		}
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){
@@ -60,11 +63,12 @@ public class FormManager {
 		}
 		return formList;
 	}
-	public List<Form> findAllvo(String id) throws Exception{
+	public List<Form> findAllvo(String id,String keywords) throws Exception{
+		System.out.println(keywords);
 		List<Form> formList = new ArrayList<Form>();
-		String sql = "select * from form where 1=1";
-		if(id != null){
-			sql = "select * from form where voID = '"+id+"'";
+		String sql = "select * from form where voID = '"+id+"'";
+		if(keywords != null){
+			sql = "select * from form where voID = '"+id+"' and actID like '%"+keywords+"%'";
 		}
 		ResultSet rs = dbUtil.executeQuery(sql, null);
 		while(rs.next()){

@@ -21,14 +21,13 @@
 </head>
 
 <body>
-<form method="post" action="<%-- <%=path%>/BuildServlet?action=seach --%>" id="listform">
+<form method="post" action="<%=path%>/FormServlet?action=list_vouser" id="listform">
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 用户列表</strong> </div>
    <%--  <form method="post" action="<%=path%>/BuildServlet?action=seach" > --%>
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
 
-        <li> <a class="button border-main icon-plus-square-o" href="page/activity/act_add.jsp"> 添加用户</a> </li>
             
         <li>搜索：</li>
           

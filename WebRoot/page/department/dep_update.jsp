@@ -32,7 +32,7 @@ Department dep = (Department)request.getAttribute("dep");
     <form method="post" class="form-x" action="<%=path%>/DepServlet?action=edit">  
       <div class="form-group">
         <div class="label">
-          <label>课程编号：</label>
+          <label>二级学院ID：</label>
         </div>
         <div class="field" align="center">
           <input  type="text" class="input w50" value="<%=dep.getDepID()%>" name="depID" readonly="ture" />
@@ -42,7 +42,7 @@ Department dep = (Department)request.getAttribute("dep");
 
       <div class="form-group">
         <div class="label">
-          <label>班号：</label>
+          <label>二级学院名称：</label>
         </div>
         <div class="field" align="center">
           <input type="text" class="input w50" value="<%=dep.getDepName()%>" name="depName" data-validate="required:请输入班号" />

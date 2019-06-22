@@ -26,7 +26,7 @@
     <form method="post" class="form-x" action="<%=path%>/DepServlet?action=add">  
       <div class="form-group">
         <div class="label">
-          <label>楼号：</label>
+          <label>二级学院号：</label>
         </div>
         <div class="field" align="center">
           <input  type="text" class="input w50" value="" name="depID"  />
@@ -36,7 +36,7 @@
 
       <div class="form-group">
         <div class="label">
-          <label>楼名：</label>
+          <label>二级学院名称：</label>
         </div>
         <div class="field" align="center">
           <input type="text" class="input w50" value="" name="depName" data-validate="required:请输入班号" />

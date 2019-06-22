@@ -28,7 +28,7 @@
             </div>         
             <form  action="<%=path %>/LoginServlet?action=login" method="post" target="_parent" >
             <div class="panel loginbox">
-                <div class="text-center margin-big padding-big-top"><h1>请假管理系统</h1></div>
+                <div class="text-center margin-big padding-big-top"><h1>志愿者管理系统</h1></div>
                 <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
                     <div class="form-group">
                      <%
@@ -64,7 +64,7 @@
                     
                     <div class="userfield" style="padding-top:8px;"align="center"> 
           			 学生 <input id="user_A"  type="radio" name="user" value="A" checked="checked"/>
-        			 辅导员 <input id="user_B"  type="radio" name="user" value="B" />
+        			 青协人员 <input id="user_B"  type="radio" name="user" value="B" />
          			 管理员 <input id="user_C"  type="radio" name="user" value="C" />         
                     </div>
                 </div>

@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<form method="post" action="<%=path%>/DepServlet?action=seach" id="listform">
+<form method="post" action="<%=path%>/DepServlet?action=list" id="listform">
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 用户列表</strong> </div>
    <%--  <form method="post" action="<%=path%>/BuildServlet?action=seach" > --%>

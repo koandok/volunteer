@@ -46,13 +46,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if("seach".equals(action)){
-			try {
-				seach(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
 		}else if("edit".equals(action)){
 			try {
 				edit(request,response);
@@ -169,26 +163,17 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 	}
 
 	public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		String keywords = request.getParameter("keywords");
 		List<Department> depList = new ArrayList<Department>();
 		DepManager depmanager = new DepManager();
-		depList = depmanager.findAll();
+		depList = depmanager.findAll(keywords);
 		  System.out.print("66666666"+depList.size());
 		request.setAttribute("depList", depList);
 		proccess(request, response, "/page/department/dep_list.jsp");
 
 	}
 
-	public void seach(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String keywords = request.getParameter("keywords");
-		List<Department> depList = new ArrayList<Department>();
-		DepManager depmanager = new DepManager();
-		depList = depmanager.Seach(keywords);
-		 System.out.print("66666666"+depList.size());
-		request.setAttribute("depList", depList);
-		proccess(request, response, "/page/department/dep_list.jsp");
 
-	}
 
 	}
 

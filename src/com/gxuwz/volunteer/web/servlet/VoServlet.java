@@ -49,13 +49,7 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if("seach".equals(action)){
-			try {
-				seach(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
 		}else if("edit".equals(action)){
 			try {
 				edit(request,response);
@@ -164,16 +158,6 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 	}
 
 	public void list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		List<Volunteer> voList = new ArrayList<Volunteer>();
-		VoManager vomanager = new VoManager();
-		voList = vomanager.findAll(null);
-		request.setAttribute("voList", voList);
-		proccess(request, response, "/page/volunteer/vo_list.jsp");
-
-	}
-
-	public void seach(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String keywords = request.getParameter("keywords");
 		List<Volunteer> voList = new ArrayList<Volunteer>();
 		VoManager vomanager = new VoManager();
@@ -182,5 +166,6 @@ private void proccess(HttpServletRequest request,HttpServletResponse response,St
 		proccess(request, response, "/page/volunteer/vo_list.jsp");
 
 	}
+
 
 }
